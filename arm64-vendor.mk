@@ -19,4 +19,9 @@ PRODUCT_COPY_FILES += \
     $(EMULATOR_KERNEL_FILE):kernel-ranchu \
     device/generic/goldfish/data/etc/advancedFeatures.ini.arm:advancedFeatures.ini \
 
+PRODUCT_SDK_ADDON_COPY_FILES += \
+    device/generic/goldfish/data/etc/advancedFeatures.ini.arm:images/arm64-v8a/advancedFeatures.ini \
+    device/generic/goldfish/data/etc/encryptionkey.img:images/arm64-v8a/encryptionkey.img \
+    $(EMULATOR_KERNEL_FILE):images/arm64-v8a/kernel-ranchu
+
 EMULATOR_VENDOR_NO_GNSS := true
