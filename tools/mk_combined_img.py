@@ -130,8 +130,9 @@ def main():
     partitions = parse_input(config)
     config.close()
 
-    # take a shortcut in build environment
-    if os.path.exists(output_filename) and len(partitions) == 2:
+    # take a shortcut in build environment if image size has not changed
+    expected_size = (2 + int(partitions[0]["sizeByMb"]) + int(partitions[1]["sizeByMb"])) * 1024 * 1024
+    if os.path.exists(output_filename) and len(partitions) == 2 and os.path.getsize(output_filename) == expected_size:
         shell_command(['dd', "if=" + partitions[0]["path"], "of=" + output_filename,
                        "conv=notrunc,sync", "ibs=1024k", "obs=1024k", "seek=1"])
         shell_command(['dd', "if=" + partitions[1]["path"], "of=" + output_filename,
